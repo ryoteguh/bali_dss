@@ -226,11 +226,17 @@
   },
   {
     "id": "Atlas",
-    "name": "Atlas Beach Club",
-    "category": "club",
-    "rating": 4.8,
-    "entry_fee": 200000,
-    "duration_hours": 4,
-    "lat": 
+      "name": "Atlas Beach Club",
+      "category": "club",
+      "rating": 4.8,
+      "entry_fee": 200000,
+      "duration_hours": 4,
+      "lat": -8.6594,
+      "lon": 115.1301,
+      "description": "Beach club terbesar di dunia yang terletak di tepi Pantai Berawa, menawarkan kolam renang tepi pantai yang sangat panjang, pertunjukan budaya, dan hiburan musik kelas dunia.",
+      "activities": ["swimming", "dancing", "dining", "sunset watching", "photography"],
+      "best_time": "sore",
+      "tips": "Datanglah sekitar jam 4 sore untuk menikmati sunset terbaik di Pantai Berawa. Pastikan cek ketentuan minimum spend untuk memesan daybed.",
+      "icon": "🍹"
   }
 ]
