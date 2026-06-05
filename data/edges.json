@@ -38,5 +38,9 @@
 
   {"from": "besakih", "to": "tirta_gangga","distance_km": 50, "time_minutes": 85, "transport_cost": 410000},
 
-  {"from": "tanah_lot","to": "ubud",       "distance_km": 40, "time_minutes": 85, "transport_cost": 330000}
+  {"from": "tanah_lot","to": "ubud",       "distance_km": 40, "time_minutes": 85, "transport_cost": 330000},
+{"from": "seminyak",        "to": "atlas_beach_club", "distance_km": 1,  "time_minutes": 5,  "transport_cost": 20000},
+{"from": "atlas_beach_club","to": "canggu",            "distance_km": 7,  "time_minutes": 20, "transport_cost": 60000},
+{"from": "atlas_beach_club","to": "kuta",              "distance_km": 6,  "time_minutes": 20, "transport_cost": 55000},
+{"from": "atlas_beach_club","to": "tanah_lot",         "distance_km": 15, "time_minutes": 38, "transport_cost": 130000}
 ]
