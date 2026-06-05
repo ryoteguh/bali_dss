@@ -70,6 +70,7 @@ CATEGORY_LABELS = {
     "nature":  "🌿 Alam & Petualangan",
     "culture": "🎨 Seni & Budaya",
     "transport": "✈️ Transportasi",
+    "club":     "🪩 Club",
 }
 
 WEIGHT_OPTIONS = {
