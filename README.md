@@ -65,4 +65,52 @@ Untuk mendukung proses pengambilan keputusan yang dinamis dan relevan, DSS ini m
   <dt>OpenWeatherMap API</dt>
   <dd>OpenWeatherMap API digunakan untuk menyediakan data cuaca terkini (real-time weather data) pada koordinat geografis Pulau Bali. Informasi cuaca seperti suhu, kelembapan, dan status hujan diintegrasikan ke dalam logika DSS untuk memberikan saran adaptif. Jika suatu wilayah terdeteksi mengalami cuaca buruk atau hujan, sistem secara otomatis akan memberikan catatan khusus atau menyesuaikan prioritas rekomendasi ke arah destinasi wisata indoor (seperti museum atau pertunjukan seni) demi kenyamanan wisatawan.</dd>
 </dl>
+<h2>BAB IV: Implementasi</h2>
 
+<h4>4.1 Lingkungan Pengembangan</h4>
+<p>Aplikasi ini dibangun menggunakan bahasa pemrograman Python karena fleksibilitasnya dalam menangani struktur data dan integrasi API. Untuk antarmuka penggunanya (UI), sistem ini menggunakan framework <strong>Streamlit</strong>. Streamlit dipilih karena memungkinkan pembuatan <i>dashboard</i> interaktif berbasis web dengan cepat tanpa perlu repot mengatur HTML/CSS dari awal[cite: 1, 11].</p>
+
+<h4>4.2 Pembuatan Graf dan Logika Algoritma</h4>
+<p>Implementasi logika utama berada pada modul pengolah graf. Berikut adalah bagaimana komponen-komponen tersebut bekerja di dalam sistem:</p>
+<ul>
+    <li><strong>Data Loader:</strong> Sistem membaca data dari file JSON (nodes.json dan edges.json) yang berisi daftar tempat wisata dan jalur penghubungnya[cite: 101]. Data ini kemudian dirakit menjadi objek graf.</li>
+    <li><strong>Dijkstra untuk Rute:</strong> Algoritma Dijkstra diimplementasikan untuk mencari rute. Ketika pengguna memilih titik awal dan tujuan, algoritma ini akan menghitung bobot kumulatif terkecil (bisa berupa jarak, waktu, atau biaya)[cite: 114, 115].</li>
+    <li><strong>Multi-Stop Planning:</strong> Untuk rencana liburan dengan banyak destinasi, sistem menggunakan pendekatan <i>Greedy</i> yang digabungkan dengan Dijkstra agar rute yang dipilih tidak melebihi batas budget yang dimasukkan pengguna[cite: 140, 142, 143].</li>
+</ul>
+
+<h4>4.3 Integrasi API (Cuaca dan AI)</h4>
+<p>Sistem ini tidak hanya bekerja dengan angka matematika, tapi juga data dari dunia nyata:</p>
+<ul>
+    <li><strong>OpenWeatherMap API:</strong> Sistem menarik data cuaca Kota Denpasar secara <i>real-time</i>[cite: 183]. Jika cuaca sedang hujan, sistem akan mengetahuinya dan menyiapkan peringatan[cite: 185, 189].</li>
+    <li><strong>Gemini AI:</strong> Hasil hitungan rute dari Dijkstra, sisa budget, dan data cuaca tersebut tidak langsung ditampilkan begitu saja. Data mentah ini dikemas dan dikirim ke Gemini AI[cite: 81, 88]. AI kemudian meracik data tersebut menjadi paragraf sapaan dan tips liburan berbahasa Indonesia yang hangat dan mudah dibaca[cite: 80, 83].</li>
+</ul>
+
+
+<h2>BAB V: Pengujian dan Analisis</h2>
+
+<h4>5.1 Skenario Pengujian</h4>
+<p>Untuk memastikan sistem berjalan dengan baik, dilakukan pengujian menggunakan berbagai skenario preferensi wisatawan. Misalnya, skenario wisatawan dengan "Budget Terbatas" versus "Budget Sultan", atau skenario prioritas "Waktu Tercepat" versus "Jarak Terpendek".</p>
+
+<h4>5.2 Analisis Hasil Pencarian Rute (Dijkstra)</h4>
+<p>Dari hasil pengujian, algoritma Dijkstra terbukti berhasil menemukan jalur yang sesuai dengan kriteria yang diminta. Ketika pengguna memasukkan batas budget yang ketat, fitur <i>Multi-Stop Planning</i> berhasil menghentikan penambahan destinasi ketika total biaya perjalanan (transportasi dan tiket masuk) sudah hampir menyentuh batas maksimal[cite: 143]. Perhitungan jarak dan waktunya pun sangat akurat berdasarkan bobot <i>edge</i> yang dimasukkan.</p>
+
+<h4>5.3 Analisis Output Kecerdasan Buatan (AI)</h4>
+<p>Integrasi dengan Gemini AI dan OpenWeatherMap terbukti menjadi nilai tambah yang sangat besar (DSS yang sesungguhnya). AI tidak berhalusinasi (ngarang) karena panduannya dibatasi oleh hasil perhitungan algoritma[cite: 84, 85]. Selain itu, ketika API cuaca mendeteksi status "Hujan", AI dengan pintar menyesuaikan narasinya untuk menyarankan pengunjung berteduh atau mencari destinasi di dalam ruangan (indoor)[cite: 82, 92].</p>
+
+
+<h2>BAB VI: Kesimpulan dan Saran</h2>
+
+<h4>6.1 Kesimpulan</h4>
+<p>Berdasarkan hasil perancangan, implementasi, dan pengujian, dapat ditarik kesimpulan bahwa:</p>
+<ol>
+    <li>Struktur data Graf (Adjacency List) terbukti sangat efektif untuk memodelkan jaringan pariwisata di Bali, di mana titik wisata menjadi <i>Node</i> dan jalur transportasi menjadi <i>Edge</i>.</li>
+    <li>Algoritma Dijkstra berhasil diterapkan untuk memecahkan masalah pencarian rute wisata yang paling efisien berdasarkan batasan waktu, jarak, dan biaya pengguna.</li>
+    <li>Penggabungan antara komputasi graf, metrik <i>Degree Centrality</i>, serta kecerdasan buatan (Gemini AI) menghasilkan sebuah Sistem Pendukung Keputusan (DSS) yang interaktif, cerdas, dan adaptif terhadap kondisi di lapangan (seperti cuaca).</li>
+</ol>
+
+<h4>6.2 Saran</h4>
+<p>Untuk pengembangan sistem selanjutnya, ada beberapa hal yang bisa ditingkatkan:</p>
+<ul>
+    <li><strong>Data Real-Time Traffic:</strong> Ke depannya, bobot waktu tempuh pada <i>edge</i> sebaiknya menggunakan API peta (seperti Google Maps API) agar kemacetan lalu lintas asli di Bali bisa ikut terhitung.</li>
+    <li><strong>Penambahan Database:</strong> Menambah variasi destinasi wisata (node) yang lebih banyak, termasuk tempat makan lokal atau penginapan, agar variasi rencana perjalanan (itinerary) yang dihasilkan AI menjadi lebih kaya.</li>
+</ul>
