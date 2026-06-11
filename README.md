@@ -145,3 +145,4 @@ Untuk mendukung proses pengambilan keputusan yang dinamis dan relevan, DSS ini m
 <div></div>
 
 https://canva.link/slcovofayhkjz0q Link PPT Presentasi
+https://youtu.be/7fB82Q8e00E link video demo (YT)
