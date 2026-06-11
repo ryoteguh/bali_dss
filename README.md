@@ -143,3 +143,5 @@ Untuk mendukung proses pengambilan keputusan yang dinamis dan relevan, DSS ini m
     <li><strong>Penambahan Database:</strong> Menambah variasi destinasi wisata (node) yang lebih banyak, termasuk tempat makan lokal atau penginapan, agar variasi rencana perjalanan (itinerary) yang dihasilkan AI menjadi lebih kaya.</li>
 </ul>
 <div></div>
+
+https://canva.link/slcovofayhkjz0q Link PPT Presentasi
